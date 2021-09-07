@@ -1,9 +1,9 @@
 //Weather app api key
 var key ='1254900f01665319d968188f7375eee7';
 // get city weather information from api provider
-var getCityForecast = function(city){
+var getCityForecast = async(city) => {
     var apiURL = "https://api.openweathermap.org/data/2.5/weather?q="+ city +"&units=imperial&appid=1254900f01665319d968188f7375eee7"
-    fetch(apiURL)
+    await fetch(apiURL)
     .then(function(response){
         response.json().then(function(data){
            displayWeather(data, city);
@@ -58,11 +58,11 @@ var todayDate = document.createElement("span")
 }
 
 // Get 7 day forecast for any  city
-var fiveDayForcast = function(city){
+var fiveDayForcast = async(city) =>{
 
     var apiURL = "https://api.openweathermap.org/data/2.5/forecast?q="+ city +"&units=imperial&appid=1254900f01665319d968188f7375eee7";
      
-    fetch(apiURL)
+    await fetch(apiURL)
     .then(function(response){
         response.json().then(function(data){
            display5Day(data);
@@ -70,7 +70,7 @@ var fiveDayForcast = function(city){
     });
 };
 
-var display5Day = function(weather){
+var display5Day = async(weather) =>{
     var forecastContainerEl = document.querySelector("#fiveday-container");
     forecastContainerEl.textContent = ""
     forecastTitle.textContent = "5-Day Forecast:";
@@ -118,6 +118,7 @@ var display5Day = function(weather){
     }
 
 }
+
 var searcHistoryCitiesBtn = document.querySelector("#past-search-buttons");
 var pastSearch = function(pastSearch){
 
